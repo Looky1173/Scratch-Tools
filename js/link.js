@@ -1,3 +1,3 @@
 function projectGo(id) {
-  //will be defined
+  window.open("https://llk.github.io/scratch-gui/master/#" + id);
 }
