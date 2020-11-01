@@ -1,0 +1,14 @@
+RewriteEngine On
+# RewriteBase /st/
+
+# Unless directory, remove trailing slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/$ $1 [R=301,L]
+
+# Redirect external .php requests to extensionless url
+# RewriteCond %{THE_REQUEST} ^(.+)\.php[?\s] [NC]
+# RewriteRule ^(.+)\.php$ $1 [R=301,L,NC]
+
+# Resolve .php file for extension-less php urls
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^/.]+)$ $1.php [L]
