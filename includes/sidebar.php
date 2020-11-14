@@ -6,7 +6,7 @@
     if($user->isLoggedIn() == false){
         echo '
         <div class="text-center">
-            <img src="/st/assets/img/scratch-cat-transparent-background.gif" width="100px" height="100px" alt="Scratch Cat pixel art">
+            <img src="assets/img/scratch-cat-transparent-background.gif" width="100px" height="100px" alt="Scratch Cat pixel art">
         </div>
         <h2 class="content-title">
             You are signed out
@@ -38,5 +38,3 @@
         ?>
     </div>
 </div>
-
-<script src="/st/includes/handle-form-submission.inc.js"></script>

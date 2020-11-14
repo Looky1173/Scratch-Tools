@@ -1,5 +1,8 @@
 RewriteEngine On
-# RewriteBase /st/
+
+# Redirect HTTP traffic to HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
 # Unless directory, remove trailing slash
 RewriteCond %{REQUEST_FILENAME} !-d
