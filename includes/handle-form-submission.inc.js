@@ -491,7 +491,7 @@ $(document).ready(function () {
   $('#delete-account').click(function () {
     $('#delete-account').prop("disabled", true);
     $('#logout').prop("disabled", true);
-    var confirmAccountDeletion = confirm("Are you sure you want to delete your account? This cannot be undone, and you will lose any data associayed with your account.");
+    var confirmAccountDeletion = confirm("Are you sure you want to delete your account? \n This cannot be undone, and you will lose any data associayed with your account.");
     if (!confirmAccountDeletion) {
       $('#delete-account').prop("disabled", false);
       $('#logout').prop("disabled", false);
