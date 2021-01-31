@@ -1,9 +1,18 @@
 <?php
 
-class HandleUsers extends Db
+class HandleUsers
 {
 
-    public function register($username, $password, $permission, $created, $modified, $status)
+    // Define database connection variable
+    private $conn;
+
+    public function __construct($db)
+    {
+        // Database connection
+        $this->conn = $db;
+    }
+
+    public function register($username, $password, $role, $created, $modified, $status)
     {
         if ($this->checkUsernameAvailability($username) == false) {
             if (!empty($password)) {
@@ -11,9 +20,9 @@ class HandleUsers extends Db
             } else {
                 $password = "";
             }
-            $sql = "INSERT INTO accounts(username, password, permission, created, modified, status) VALUES (?, ?, ?, ?, ?, ?)";
-            $stmt = $this->connect()->prepare($sql);
-            $stmt->execute([$username, $password, $permission, $created, $modified, $status]);
+            $sql = "INSERT INTO accounts(username, password, role, created, modified, status) VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$username, $password, $role, $created, $modified, $status]);
             return true;
         } else {
             echo "USERNAME TAKEN!";
@@ -22,7 +31,7 @@ class HandleUsers extends Db
     public function login($username, $password)
     {
         $sql = "SELECT * FROM accounts WHERE username=?";
-        $stmt = $this->connect()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute([$username]);
         //Return row as an array
         $returned_row = $stmt->fetch();
@@ -47,7 +56,7 @@ class HandleUsers extends Db
     public function checkLoginType($username)
     {
         $sql = "SELECT * FROM accounts WHERE username=?";
-        $stmt = $this->connect()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute([$username]);
         //Return row as an array
         $returned_row = $stmt->fetch();
@@ -93,15 +102,18 @@ class HandleUsers extends Db
         unset($_SESSION['username']);
         return true;
     }
-    public function deleteUser($id)
+    public function deleteUser($id, $logout)
     {
-        $this->logout();
+        if ($logout == true) {
+            $this->logout();
+        }
+
         $sql = "DELETE FROM accounts WHERE id=?";
-        $stmt = $this->connect()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute([$id]);
         return true;
     }
-    public function updateUser($username, $password, $permission, $created, $modified, $status, $id)
+    public function changeAuthMethodToScratchLogin($username, $id)
     {
         if (!empty($username)) {
             $userinfo = $this->getUserInformation($username, "");
@@ -118,36 +130,73 @@ class HandleUsers extends Db
         if (empty($id)) {
             $id = $userinfo["id"];
         }
-        if (empty($permission)) {
-            $permission = $userinfo["permission"];
+        if (empty($modified)) {
+            date_default_timezone_set("UTC");
+            $modified = date('Y-m-d H:i:s');
+        }
+        $password = "";
+        $sql = "UPDATE accounts SET password=?, modified=? WHERE id=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$password, $modified, $id]);
+        return true;
+    }
+    public function updateUser($username, $password, $role, $created, $modified, $status, $id)
+    {
+        $updatePassword = true;
+        if (!empty($username)) {
+            $userinfo = $this->getUserInformation($username, "");
+        } else {
+            if (!empty($id)) {
+                $userinfo = $this->getUserInformation("", $id);
+            } else {
+                return "error";
+            }
+        }
+        if (empty($username)) {
+            $username = $userinfo["username"];
+        }
+        if (empty($id)) {
+            $id = $userinfo["id"];
+        }
+        if (empty($role)) {
+            $role = $userinfo["role"];
         }
         if (empty($created)) {
             $created = $userinfo["created"];
         }
         if (empty($modified)) {
-            $modified = $userinfo["modified"];
+            date_default_timezone_set("UTC");
+            $modified = date('Y-m-d H:i:s');
         }
         if (empty($status)) {
             $status = $userinfo["status"];
         }
         if (empty($password)) {
-            return "missing password";
+            $sql = "SELECT * FROM accounts WHERE id=?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$id]);
+            $pw = $stmt->fetch();
+            $password = $pw['password'];
+            $updatePassword = false;
         }
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE accounts SET username=?, password=?, permission=?, created=?, modified=?, status=? WHERE id=?";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$username, $password, $permission, $created, $modified, $status, $id]);
+        if ($updatePassword == true) {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        $sql = "UPDATE accounts SET username=?, password=?, role=?, created=?, modified=?, status=? WHERE id=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$username, $password, $role, $created, $modified, $status, $id]);
         return true;
     }
     public function getUserInformation($username, $id)
     {
         if (!empty($username) && empty($id)) {
             $sql = "SELECT * FROM accounts WHERE username=?";
-            $stmt = $this->connect()->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->execute([$username]);
         } elseif (empty($username) && !empty($id)) {
             $sql = "SELECT * FROM accounts WHERE id=?";
-            $stmt = $this->connect()->prepare($sql);
+            $stmt = $this->conn->prepare($sql);
             $stmt->execute([$id]);
         } else {
             return "error: two params specified";
@@ -156,7 +205,7 @@ class HandleUsers extends Db
         $returned_row = $stmt->fetch();
         //Check if row is actually returned
         if (is_array($returned_row)) {
-            return array("id" => $returned_row['id'], "username" => $returned_row['username'], "created" => $returned_row['created'], "modified" => $returned_row['modified'], "permission" => $returned_row['permission'], "status" => $returned_row['status']);
+            return array("id" => $returned_row['id'], "username" => $returned_row['username'], "created" => $returned_row['created'], "modified" => $returned_row['modified'], "role" => $returned_row['role'], "status" => $returned_row['status']);
         } else {
             return "not found";
         }
@@ -168,7 +217,7 @@ It returns true if a username is taken and it returns false if not.
     public function checkUsernameAvailability($username)
     {
         $sql = "SELECT * FROM accounts WHERE username=?";
-        $stmt = $this->connect()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute([$username]);
         $check =  $stmt->fetch();
         if ($check) {

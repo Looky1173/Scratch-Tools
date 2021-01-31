@@ -15,9 +15,3 @@ RewriteRule ^([^/]+)/$ $1 [R=301,L]
 # Resolve .php file for extension-less php urls
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^/.]+)$ $1.php [L]
-
-# Format user variable
-RewriteRule ^user/([0-9a-zA-Z_-]+) user.php?username=$1
-
-# 404 error
-ErrorDocument 404 /errors/404.php

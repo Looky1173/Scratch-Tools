@@ -1,7 +1,12 @@
 <?php
-session_start();
 
-require_once("includes/autoloader.inc.php");
+require_once $_SERVER["DOCUMENT_ROOT"] . '/resources/common/autoloader.php';
+
+// Include connection and session details
+$database = new Db();
+$db = $database->connect();
+$session = new Session($db);
+$perm = new Permissions($db);
 
 $request = $_POST["request"];
 
@@ -21,7 +26,7 @@ if ($request == "register") {
 
     //Check if a username was given
     if (!empty($username)) {
-        $handleUser = new HandleUsers;
+        $handleUser = new HandleUsers($db);
         if ($handleUser->checkUsernameAvailability($username) == false) {
             //Username avaible, continue
             if ($ok == true) {
@@ -77,17 +82,18 @@ if ($request == "register") {
     $response = array("username" => $username, "verification_code" => $verification_code, "return" => $return);
     echo json_encode($response);
 } elseif ($request == "register-final") {
-    $register = new HandleUsers;
+    $register = new HandleUsers($db);
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $permission = 0;
+    $role = 'user';
+    $role = $perm->getRoleIdByName($role);
     date_default_timezone_set("UTC");
     $created = date('Y-m-d H:i:s');
     $modified = date('Y-m-d H:i:s');
     $status = 'normal';
 
     //Register
-    if ($register->register($username, $password, $permission, $created, $modified, $status) == true) {
+    if ($register->register($username, $password, $role, $created, $modified, $status) == true) {
         if (!empty($password)) {
             //Login automatically
             if ($register->login($username, $password) == true) {
@@ -117,7 +123,7 @@ if ($request == "register") {
 
     $verification_code;
 
-    $login = new HandleUsers;
+    $login = new HandleUsers($db);
     if ($login->checkUsernameAvailability($username) == true) {
         $loginReturn = $login->login($username, $password);
         if ((!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) && !empty($password)) {
@@ -144,10 +150,10 @@ if ($request == "register") {
 } elseif ($request == "scratch-login") {
     $username = $_POST['username'];
 
-    $login = new HandleUsers;
+    $login = new HandleUsers($db);
     echo json_encode($login->loginWithoutPassword($username));
 } elseif ($request == "logout") {
-    $logout = new HandleUsers;
+    $logout = new HandleUsers($db);
     if ($logout->logout() == true) {
         $response = array("status" => "success");
     } else {
@@ -155,8 +161,8 @@ if ($request == "register") {
     }
     echo json_encode($response);
 } elseif ($request == "delete-account") {
-    $delete = new HandleUsers;
-    if ($delete->deleteUser($_SESSION['id']) == true) {
+    $delete = new HandleUsers($db);
+    if ($delete->deleteUser($_SESSION['id'], true) == true) {
         $response = array("status" => "success");
     } else {
         $response = array("status" => "error");
@@ -164,7 +170,7 @@ if ($request == "register") {
     echo json_encode($response);
 } elseif ($request == "forgot-password") {
     $username = $_POST['username'];
-    $forgot_pwd = new HandleUsers;
+    $forgot_pwd = new HandleUsers($db);
     if ($forgot_pwd->checkUsernameAvailability($username) == true) {
         $loginType = $forgot_pwd->checkLoginType($username);
         if ($loginType == "scratch-login") {
@@ -191,7 +197,7 @@ if ($request == "register") {
     $number = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
 
-    $change_pwd = new HandleUsers;
+    $change_pwd = new HandleUsers($db);
     if ($change_pwd->checkUsernameAvailability($username) == true) {
         if ($password != $password_repeat) {
             $response = array("status" => "error", "type" => "password-mismatch", "message" => "The entered passwords do not match!");
