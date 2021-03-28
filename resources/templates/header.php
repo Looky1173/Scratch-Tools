@@ -10,7 +10,7 @@
     <!-- Navbar text -->
     <span class="navbar-text ml-5 d-none d-sm-block">
         <!-- ml-5 = margin-left: 0.5rem (5px) -->
-        <span class="badge text-monospace">v0.0.3 <span class="badge badge-danger">Alpha</span></span>
+        <span class="badge text-monospace">v0.0.4 <span class="badge badge-danger">Alpha</span></span>
         <!-- text-monospace = font-family shifted to monospace -->
     </span>
     <!-- Navbar nav -->
@@ -103,7 +103,7 @@
                     <div class="dropdown-divider"></div>
                     <span class="navbar-text ml-5 mt-10 mb-5">
                         <!-- ml-5 = margin-left: 0.5rem (5px) -->
-                        <span class="badge text-monospace">v0.0.3 <span class="badge badge-danger">Alpha</span></span>
+                        <span class="badge text-monospace">v0.0.4 <span class="badge badge-danger">Alpha</span></span>
                         <!-- text-monospace = font-family shifted to monospace -->
                     </span>
                 </div>

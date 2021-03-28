@@ -10,7 +10,7 @@
                 <!-- w-50 = width: 5rem (50px), h-50 = height: 5rem (50px), d-flex = display: flex, align-items-center = align-items: center, rounded-circle = border-radius: 50%, bg-secondary = background-color: var(--secondary-color), hidden-dm = hidden in dark mode -->
                 <div class="m-auto">
                     <!-- m-auto = margin: auto -->
-                    <i class="fa fa-lightbulb-o fa-2x" aria-hidden="true"></i>
+                    <i class="fas fa-lightbulb fa-2x" aria-hidden="true"></i>
                     <span class="sr-only">Lightbulb</span> <!-- sr-only = only for screen readers -->
                 </div>
             </div>

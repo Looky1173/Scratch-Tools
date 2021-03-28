@@ -55,13 +55,11 @@ $perm = new Permissions($db);
                     <div class="col-lg-3 d-none d-lg-block">
                         <div class="content">
                             <h2 class="content-title font-size-20">
-                                On this page
+                                Feedback
                             </h2>
-                            <div class="fake-content white"></div>
-                            <div class="fake-content"></div>
-                            <div class="fake-content"></div>
-                            <div class="fake-content"></div>
-                            <div class="fake-content"></div>
+                            <a href="#feedback" class="btn btn-primary" role="button">Give feedback</a>
+                            <br>
+                            <br>
                             <!-- Tip start -->
                             <?php include $_SERVER["DOCUMENT_ROOT"] . '/resources/templates/dashboard/tip.php'; ?>
                             <!-- Tip end -->

@@ -33,7 +33,7 @@ include $_SERVER["DOCUMENT_ROOT"] . '/resources/common/session.php';
             <div class="content">
                 <div class="alert alert-success" role="alert">
                     <h4 class="alert-heading">Since you are here...</h4>
-                    ...you may want to check out the new <a href="/dashboard" class="alert-link">dashboard</a> and explore our <a href="/tools" class="alert-link">tools</a>. Any feedback is welcome and appreciated!
+                    ...you may want to chechk out the new <a href="/dashboard" class="alert-link">dashboard</a> and explore our <a href="/tools" class="alert-link">tools</a>. Any feedback is welcome and appreciated!
                 </div>
                 <br>
                 <div class="alert alert-primary" role="alert">

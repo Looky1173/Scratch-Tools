@@ -126,7 +126,23 @@ include $_SERVER["DOCUMENT_ROOT"] . '/resources/common/session.php';
                 </div>
                 <div id="statistics" name="statistics" class="card">
                     <h2 class="card-title">Statistics <a href="#statistics" class="ml-5 text-decoration-none">#</a></h2>
-                    <i>Coming soon...</i>
+                    <a href="/search" class="card tools-section-card w-350 mw-full m-0 p-0 d-inline-flex" rel="noopener">
+                        <div class="w-100 h-100 m-10 align-self-center">
+                            <img src="/img/search.png" class="d-block w-100 h-100 rounded" alt="Unfollowers image.">
+                        </div>
+                        <div class="flex-grow-1 overflow-y-hidden d-inline-flex align-items-center position-relative h-120">
+                            <div class="p-10 w-full m-auto">
+                                <p class="font-size-20 text-dark-lm text-light-dm m-0 mb-5 text-truncate font-weight-medium">
+                                    Search!
+                                </p>
+                                <p class="font-size-12 mt-5 mb-0">
+                                    Obtain statistics about users, projects, studios, and everything Scratch!
+                                    <span class="text-primary text-smoothing-auto-dm d-inline-block">Let's go! <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                </p>
+                            </div>
+                            <div class="tools-section-card-scroll-block"></div>
+                        </div>
+                    </a>
                 </div>
                 <div id="advanced" name="advanced" class="card">
                     <h2 class="card-title">Advanced <a href="#advanced" class="ml-5 text-decoration-none">#</a></h2>

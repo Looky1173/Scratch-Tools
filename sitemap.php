@@ -51,28 +51,35 @@ include $_SERVER["DOCUMENT_ROOT"] . '/resources/common/session.php';
                 <a href="/contact">Contact</a> - the page where new features can be suggested and the Scratch Tools team can be contacted for assistance
                 <br>
                 <a href="/sitemap">Sitemap</a> - this page; a list of pages of Scratch Tools, each with a brief explanation
+                <br>
+                <a href="#feedback">Feedback</a> - a form to give feedback and suggestions
 
             </div>
             <div class="card">
                 <h2 class="card-title">
                     Tools & Utilities
                 </h2>
-                <a href="/tools/all">Tools</a> - the list of all tools on Scratch Tools grouped by the categories <i>Utilities</i>, <i>Statistics</i>, and <i>Advanced</i>
+                <a href="/tools/">Tools</a> - the list of all tools on Scratch Tools grouped by the categories <i>Utilities</i>, <i>Statistics</i>, and <i>Advanced</i>
                 <br>
-                <a href="/tools/utilities">Utilities</a> - tools in the <i>Utilities</i> section; common easy to use tools
+                <a href="/tools#utilities">Utilities</a> - tools in the <i>Utilities</i> section; common easy to use tools
                 <div class="card bg-dark-light">
                     <h3 class="card-title font-size-16">
                         Tools -> Utilities
                     </h3>
-                    <a href="/tools/all">Unfollowers</a> - ontain a list of users who have unfollowed you (both deleted and active users)
+                    <a href="/tools/unfollowers">Unfollowers</a> - obtain a list of users who have unfollowed you (both deleted and active users)
                     <br>
-                    <a href="/tools/utilities">Unshared project viewer</a> - see and edit unshared projects
-
+                    <a href="/tools/unshared-viewer">Unshared project viewer</a> - see and edit unshared projects
                 </div>
                 <br>
-                <a href="/tools/statistics">Statistics</a> - tools in the <i>Statistics</i> section; tools to obtain statistics
+                <a href="/tools#statistics">Statistics</a> - tools in the <i>Statistics</i> section; tools to obtain statistics
+                <div class="card bg-dark-light">
+                    <h3 class="card-title font-size-16">
+                        Tools -> Statistics
+                    </h3>
+                    <a href="/search">Search</a> - view statistics about users, projects, studios, and everything Scratch!
+                </div>
                 <br>
-                <a href="/tools/advanced">Advanced</a> - tools in the <i>Advanced</i> section; recommended for experienced users
+                <a href="/tools#advanced">Advanced</a> - tools in the <i>Advanced</i> section; recommended for experienced users
 
             </div>
         </div>

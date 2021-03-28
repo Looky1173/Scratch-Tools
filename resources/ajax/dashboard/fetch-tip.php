@@ -13,7 +13,8 @@ $tips = [
         'It is possible to change the authentication method of your account under the <i>My account</i> tab.',
         'Collaborations allow multiple users to work on the same project real-time, and to organise them better.',
         'You will receive a warning when you are about to leave Scratch Tools and go to an external site.',
-        'Have a shop on Scratch? Register it in the <i>Shops</i> tab!'
+        'Have a shop on Scratch? Register it in the <i>Shops</i> tab!',
+        'The new <a href="/search">Search!</a> tool allows you to view statistics of users, projects, studios; basically anything Scratch!'
     ],
     'moderator' => [
         'You can view all users in the <i>Users</i> tab located in the sidebar.',
@@ -35,9 +36,17 @@ if ($userRole == 'user') {
     $types = ['normal', 'moderator'];
 } else if ($userRole == 'administrator') {
     $types = ['normal', 'moderator', 'admin'];
+} else {
+    $types = ['normal'];
 }
 
-if (!empty($_SESSION['last_tip'])) {
+$type = array_rand($types);
+$type = $types[$type];
+$tip = $tips[$type][array_rand($tips[$type])];
+
+/*
+// Legacy code
+if (!empty($_COOKIE['last_tip'])) {
     do {
         $last_tip = [];
         $type = array_rand($types);
@@ -45,7 +54,8 @@ if (!empty($_SESSION['last_tip'])) {
         $last_tip[] = $type;
         $tip = array_rand($tips[$type]);
         $last_tip[] = $tip;
-    } while ($tip == $tips[$_SESSION['last_tip'][0]][$_SESSION['last_tip'][1]]);
+        echo '<bT>TEST:</b> '. $tips[$_COOKIE['last_tip'][0]][$_COOKIE['last_tip'][1]];
+    } while ($tip == $tips[$_COOKIE['last_tip'][0]][$_COOKIE['last_tip'][1]]);
 } else {
     $last_tip = [];
     $type = array_rand($types);
@@ -56,8 +66,8 @@ if (!empty($_SESSION['last_tip'])) {
 }
 
 
-$_SESSION['last_tip'] = $last_tip;
-
-$response = ['tip' => $tips[$type][$tip]];
+$_COOKIE['last_tip'] = $last_tip;
+*/
+$response = ['tip' => $tip];
 
 echo json_encode($response);

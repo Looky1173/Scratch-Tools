@@ -43,21 +43,19 @@ include $_SERVER["DOCUMENT_ROOT"] . '/resources/common/session.php';
                                 Dashboard
                             </h1>
                             <div class="alert alert-primary" role="alert">
-                            <h4 class="alert-heading">Heads up!</h4>
-                            This section of the website is under development therefore it is currently inaccessible. If you would like to contribute, please see the <a href="https://github.com/Looky1173/Scratch-Tools" class="alert-link">GitHub repository</a> of Scratch Tools.
-                        </div>
+                                <h4 class="alert-heading">Heads up!</h4>
+                                This section of the website is under development therefore it is currently inaccessible. If you would like to contribute, please see the <a href="https://github.com/Looky1173/Scratch-Tools" class="alert-link">GitHub repository</a> of Scratch Tools.
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-3 d-none d-lg-block">
                         <div class="content">
                             <h2 class="content-title font-size-20">
-                                On this page
+                                Feedback
                             </h2>
-                            <div class="fake-content"></div>
-                            <div class="fake-content"></div>
-                            <div class="fake-content"></div>
-                            <div class="fake-content"></div>
-                            <div class="fake-content"></div>
+                            <a href="#feedback" class="btn btn-primary" role="button">Give feedback</a>
+                            <br>
+                            <br>
                             <!-- Tip start -->
                             <?php include $_SERVER["DOCUMENT_ROOT"] . '/resources/templates/dashboard/tip.php'; ?>
                             <!-- Tip end -->

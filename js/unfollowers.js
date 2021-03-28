@@ -54,7 +54,19 @@ $(document).ready(function () {
 		document.getElementById("usertitle").innerHTML = "Loading...";
 		document.getElementById("userlist").innerHTML = "You will see who unfollowed this user here...";
 		*/
-		$.get("https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, start).fail(function () { alert("That user does not exist."); console.log("That user doesn't exists"); ready(); });
+		$.ajax({
+			url: "https://api.allorigins.win/raw?url=https://api.scratch.mit.edu/accounts/checkusername/" + user,
+			dataType: "json",
+			success: function (response) {
+				if (response.msg == "username exists") {
+					$.get("https://api.allorigins.win/raw?url=https://scratch.mit.edu/users/" + user + "/followers/?page=" + page, start);
+				} else {
+					alert("That user does not exist.");
+					console.log("That user doesn't exists");
+					ready();
+				}
+			}
+		});
 	});
 	/*
 	$("#unfdirect").click(function(){

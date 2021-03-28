@@ -1,6 +1,6 @@
 function lookup(user) {
     if (user != '') {
-        window.location.href = '/user/' + user;
+        window.location.href = '/search/users/' + user;
     }
 }
 

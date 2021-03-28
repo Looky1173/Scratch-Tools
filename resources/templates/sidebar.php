@@ -42,6 +42,12 @@
                 <i class="fas fa-sliders-h" aria-hidden="true"></i>
             </span>
             Dashboard
+        </a>
+        <a href="/search" class="sidebar-link sidebar-link-with-icon">
+            <span class="sidebar-icon">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+            Search
         </a>';
         }
         ?>

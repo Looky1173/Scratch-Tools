@@ -23,7 +23,7 @@
     <link rel="icon" href="/img/scratch-cat-transparent-background.gif">
 
     <!-- Halfmoon CSS -->
-    <link href="/css/halfmoon.min.css" rel="stylesheet" />
+    <link href="/css/halfmoon-variables.min.css" rel="stylesheet" />
 
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">

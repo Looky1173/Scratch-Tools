@@ -44,6 +44,9 @@ class Session
 
 		// Start the session
 		session_start();
+
+		// Delete unused rows
+		$this->_gc(10);
 	}
 	public function _open()
 	{
@@ -108,7 +111,7 @@ class Session
 		// Calculate what is to be deemed old
 		$old = time() - $max;
 		// Set query
-		$sql = "DELETE FROM sessions WHERE access < ?";
+		$sql = "DELETE FROM sessions WHERE (access < ? AND data = '')";
 		$stmt = $this->conn->prepare($sql);
 		// Attempt execution
 		if ($stmt->execute([$old])) {

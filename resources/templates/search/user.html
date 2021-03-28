@@ -1,0 +1,169 @@
+<div class="content">
+    <div class="container-fluid">
+        <a href="/search" class="btn btn-sm search-link" type="button"><i class="fas fa-caret-left"></i> Back</a>
+        <div id="description" class="content">
+            <h1 class="content-title font-size-22">
+                User information and statistics
+            </h1>
+            <p>Are you after detailed statistics about your favourite Scratcher? Perhaps you are looking for information
+                regarding your profile? Either way, you will find all the information possible to obtain about
+                Scratchers and New Scratcher right here!</p>
+        </div>
+        <div class="row row-eq-spacing-lg">
+            <div class="col-lg-4">
+                <div class="card h-lg-250 overflow-y-lg-auto">
+                    <h2 class="card-title">
+                        About
+                    </h2>
+                    <div id="user_about_badges">
+                        <div class="fake-content white w-50 mw-full bg-primary d-inline-block"></div>
+                        <div class="fake-content white w-50 mw-full bg-success d-inline-block"></div>
+                        <div class="fake-content white w-50 mw-full bg-secondary d-inline-block mb-10"></div>
+                    </div>
+                    <div class="d-flex">
+                        <div id="user_about_picture">
+                            <div class="fake-content h-150 w-150 h-lg-100 w-lg-100"></div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <div id="user_about_username" class="ml-10 mb-10">
+                                <div class="fake-content w-150"></div>
+                            </div>
+                            <button id="user_about_scratch" class="btn ml-10" disabled="disabled">View on
+                                Scratch</button>
+                            <div class="d-flex mt-10 justify-content-center">
+                                <button id="user_about_scratchstats" class="btn btn-square ml-10" data-toggle="tooltip"
+                                    data-title="View user on ScratchStats" disabled="disabled"><img
+                                        src="https://scratchstats.com/favicon.ico" width="30px" height="30px"></button>
+                                <button id="user_about_ocular" class="btn btn-square ml-10" data-toggle="tooltip"
+                                    data-title="View user on Ocular" disabled="disabled"><img
+                                        src="https://ocular.jeffalo.net/favicon.ico" width="30px"
+                                        height="30px"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <br class="hidden-lg-and-up">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card h-lg-250 overflow-y-lg-auto">
+                    <h2 class="card-title">
+                        General information
+                    </h2>
+                    <div id="user_info">
+                        <div class="fake-content mb-20"></div>
+                        <div class="fake-content mb-20"></div>
+                        <div class="fake-content mb-20"></div>
+                        <div class="fake-content mb-20"></div>
+                        <div class="fake-content mb-20"></div>
+                        <div class="fake-content mb-20"></div>
+                        <div class="fake-content mb-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-eq-spacing">
+            <div class="col-6 col-xl-3">
+                <div class="card">
+                    <h2 class="card-title">
+                        Join date & Location
+                    </h2>
+                    <div id="user_join">
+                        <div class="fake-content"></div>
+                        <div class="fake-content w-50 mw-full"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-xl-3">
+                <div class="card">
+                    <h2 class="card-title">
+                        <span data-toggle="tooltip" data-title="Operating System">OS</span> & Browser
+                    </h2>
+                    <div id="user_os">
+                        <div class="fake-content"></div>
+                        <div class="fake-content w-50 mw-full"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="v-spacer d-xl-none"></div>
+            <div class="col-12 col-xl-6">
+                <div class="card">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="card-title">
+                                    Ranks
+                                </h2>
+                            </div>
+                            <div class="col d-flex justify-content-end">
+                                <div class="custom-switch d-inline">
+                                    <input type="checkbox" id="user_ranks_global" value="" checked="checked">
+                                    <label for="user_ranks_global">Global</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div id="user_ranks_followers" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_ranks_following" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_ranks_loves" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_ranks_favorites" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_ranks_views" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_ranks_comments" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-eq-spacing">
+            <div class="col">
+                <div class="card">
+                    <h2 class="card-title">
+                        Statistics
+                    </h2>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div id="user_stats_followers" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_stats_following" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_stats_loves" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_stats_favorites" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_stats_views" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_stats_comments" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                            <div id="user_stats_projects" class="col m-5">
+                                <div class="fake-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#feedback" class="btn btn-primary btn-block" role="button">Give feedback</a>
+    </div>
+</div>
+
+<script src="/js/ua-parser.js"></script>
+<script src="/js/search/users.js"></script>

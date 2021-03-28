@@ -80,4 +80,7 @@ $(document).ready(function () {
             $('.sidebar-menu').replaceWith('<div class="text-center font-size-24"><b>Failed to fetch and build sidebar!</b></div>');
         }
     })
+
+
+    
 })
